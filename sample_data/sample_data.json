@@ -1,0 +1,54 @@
+{
+  "notice": "All data is fictional and for local testing only.",
+  "users": [
+    {
+      "username": "admin",
+      "role": "admin"
+    },
+    {
+      "username": "operator",
+      "role": "operator"
+    },
+    {
+      "username": "beneficiary",
+      "role": "beneficiary"
+    }
+  ],
+  "beneficiaries": [
+    {
+      "card_number": "TN-1001",
+      "name": "Lakshmi",
+      "village": "Demo Village",
+      "household_size": 4,
+      "monthly_entitlement_kg": 20
+    },
+    {
+      "card_number": "TN-1002",
+      "name": "Ravi",
+      "village": "North Street",
+      "household_size": 3,
+      "monthly_entitlement_kg": 15
+    },
+    {
+      "card_number": "TN-1003",
+      "name": "Meena",
+      "village": "Lake Road",
+      "household_size": 5,
+      "monthly_entitlement_kg": 25
+    }
+  ],
+  "stock": [
+    {
+      "commodity": "Rice",
+      "quantity_kg": 500
+    },
+    {
+      "commodity": "Wheat",
+      "quantity_kg": 200
+    },
+    {
+      "commodity": "Sugar",
+      "quantity_kg": 80
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RationSathi{% endblock %}</title>
+  <style>
+    :root{--navy:#16324f;--teal:#167d8d;--bg:#f4f7fb;--ink:#1f2937;--muted:#667085;--line:#e3e8ef}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    header{background:var(--navy);color:white;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+    header a{color:white;text-decoration:none;margin-left:14px;font-size:.94rem}.brand{font-weight:800;font-size:1.2rem}
+    main{max-width:1100px;margin:28px auto;padding:0 18px}.panel,.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 4px 18px #19324d0a}
+    h1{margin-top:0;font-size:1.8rem}h2{font-size:1.15rem;margin-top:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px;margin:18px 0}
+    .stat strong{font-size:1.8rem;display:block;color:var(--teal);margin-top:8px}.layout{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);font-size:.94rem}th{color:var(--muted);font-weight:650}
+    .table-wrap{overflow-x:auto}.btn,button{background:var(--teal);color:white;border:0;border-radius:8px;padding:10px 14px;text-decoration:none;display:inline-block;cursor:pointer;font-size:.95rem}
+    input,select,textarea{width:100%;padding:11px;border:1px solid #ccd5e0;border-radius:8px;margin:6px 0 14px;font:inherit}label{font-weight:600;font-size:.9rem}
+    .flash{padding:12px 14px;border-radius:8px;margin-bottom:12px;background:#e5f6ed;color:#17623b}.flash.error{background:#fff0ed;color:#a23321}
+    .tag{display:inline-block;background:#e7f4f5;color:#11606a;padding:4px 9px;border-radius:99px;font-size:.8rem}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    footer{text-align:center;color:var(--muted);padding:25px;font-size:.85rem}
+    @media(max-width:600px){main{margin:18px auto}header{padding:14px 18px}header a{margin-left:8px}}
+  </style>
+</head>
+<body>
+<header>
+  <a class="brand" href="{{ url_for('dashboard') if session.get('user_id') else url_for('login') }}">🌾 RationSathi</a>
+  {% if session.get('user_id') %}
+  <nav>
+    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    {% if session.get('role') in ['admin','operator'] %}
+      <a href="{{ url_for('beneficiaries') }}">Beneficiaries</a><a href="{{ url_for('stock_page') }}">Stock</a><a href="{{ url_for('distribute') }}">Distribute</a><a href="{{ url_for('reports') }}">Reports</a>
+    {% endif %}
+    <a href="{{ url_for('transactions') }}">Transactions</a><a href="{{ url_for('complaints') }}">Complaints</a><a href="{{ url_for('logout') }}">Logout</a>
+  </nav>
+  {% endif %}
+</header>
+<main>
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="flash {{ 'error' if category == 'error' else '' }}">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</main>
+<footer>RationSathi · Student prototype · Uses fictional sample data</footer>
+</body>
+</html>

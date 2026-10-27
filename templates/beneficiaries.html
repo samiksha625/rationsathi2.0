@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block title %}Beneficiaries · RationSathi{% endblock %}
+{% block content %}<h1>Beneficiaries</h1><p class="muted">Fictional sample records for demonstration.</p><section class="panel table-wrap"><table><tr><th>Card number</th><th>Name</th><th>Village</th><th>Household</th><th>Monthly entitlement (kg)</th></tr>{% for row in rows %}<tr><td>{{ row.card_number }}</td><td>{{ row.name }}</td><td>{{ row.village }}</td><td>{{ row.household_size }}</td><td>{{ row.monthly_entitlement_kg }}</td></tr>{% endfor %}</table></section>{% endblock %}

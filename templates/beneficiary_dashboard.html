@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}My Ration · RationSathi{% endblock %}
+{% block content %}
+<h1>My Ration</h1><p class="muted">Welcome, {{ session.get('full_name') }}.</p>
+<div class="panel">
+{% if card %}<h2>Beneficiary details</h2><p><b>Card number:</b> {{ card.card_number }}</p><p><b>Name:</b> {{ card.name }}</p><p><b>Village:</b> {{ card.village }}</p><p><b>Household size:</b> {{ card.household_size }}</p><p><b>Recorded monthly entitlement:</b> {{ card.monthly_entitlement_kg }} kg</p>{% else %}<p>Sample beneficiary record unavailable.</p>{% endif %}
+</div>
+<div class="panel" style="margin-top:16px"><h2>My recent transactions</h2>{% if recent %}<div class="table-wrap"><table><tr><th>Date</th><th>Commodity</th><th>Quantity (kg)</th></tr>{% for tx in recent %}<tr><td>{{ tx.created_at }}</td><td>{{ tx.commodity }}</td><td>{{ '%.2f'|format(tx.quantity_kg) }}</td></tr>{% endfor %}</table></div>{% else %}<p class="muted">No distribution transactions recorded yet.</p>{% endif %}<p><a class="btn" href="{{ url_for('complaints') }}">Submit a complaint</a></p></div>
+{% endblock %}

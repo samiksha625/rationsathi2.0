@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Dashboard · RationSathi{% endblock %}
+{% block content %}
+<h1>Dashboard</h1><p class="muted">Welcome, {{ session.get('full_name') }}. Role: <span class="tag">{{ session.get('role')|title }}</span></p>
+<div class="grid">
+  <div class="stat">Beneficiaries<strong>{{ stats.beneficiaries }}</strong></div>
+  <div class="stat">Commodity types<strong>{{ stats.commodities }}</strong></div>
+  <div class="stat">Transactions<strong>{{ stats.transactions }}</strong></div>
+  <div class="stat">Open complaints<strong>{{ stats.open_complaints }}</strong></div>
+</div>
+<div class="layout">
+  <section class="panel"><h2>Current stock</h2><div class="table-wrap"><table><tr><th>Commodity</th><th>Available (kg)</th></tr>{% for item in stock %}<tr><td>{{ item.commodity }}</td><td>{{ '%.2f'|format(item.quantity_kg) }}</td></tr>{% endfor %}</table></div></section>
+  <section class="panel"><h2>Recent transactions</h2>{% if recent %}<div class="table-wrap"><table><tr><th>Card</th><th>Item</th><th>Qty (kg)</th></tr>{% for tx in recent %}<tr><td>{{ tx.card_number }}</td><td>{{ tx.commodity }}</td><td>{{ '%.2f'|format(tx.quantity_kg) }}</td></tr>{% endfor %}</table></div>{% else %}<p class="muted">No transactions recorded yet.</p>{% endif %}<p><a class="btn" href="{{ url_for('distribute') }}">Record distribution</a></p></section>
+</div>
+{% endblock %}

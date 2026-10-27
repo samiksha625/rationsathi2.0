@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}Login · RationSathi{% endblock %}
+{% block content %}
+<div style="max-width:480px;margin:4vh auto" class="panel">
+  <h1>Welcome to RationSathi</h1><p class="muted">Transparent ration records, stock visibility, and complaint tracking.</p>
+  <form method="post">
+    <label>Username</label><input name="username" autocomplete="username" required placeholder="Enter username">
+    <label>Password</label><input name="password" type="password" autocomplete="current-password" required placeholder="Enter password">
+    <button type="submit" style="width:100%">Sign in</button>
+  </form>
+  <hr style="border:0;border-top:1px solid #e3e8ef;margin:22px 0">
+  <h2>Demo access</h2><p><span class="tag">Admin</span> admin / Admin@123</p><p><span class="tag">Operator</span> operator / Operator@123</p><p><span class="tag">Beneficiary</span> beneficiary / User@123</p>
+  <small class="muted">Use demo credentials only. Do not add real beneficiary data.</small>
+</div>
+{% endblock %}
